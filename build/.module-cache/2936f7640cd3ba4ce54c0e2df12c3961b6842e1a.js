@@ -4,16 +4,17 @@
 	var app = angular.module('app', ['react']);
 
 	app.controller('helloController', [ '$scope', function ($scope) {
+			console.log('Registering helloController');
 			$scope.person = { fname: 'Clark', lname: 'Kent' };
 		}]);
 
-	var HelloComponent = React.createClass({
+	var HelloComponent = React.createClass({displayName: 'HelloComponent',
 		propTypes: {
 			fname: React.PropTypes.string.isRequired,
 			lname: React.PropTypes.string.isRequired
 		},
 		render: function () {
-			return <span>Hello {this.props.fname} {this.props.lname}</span>;
+			return React.createElement("span", null, "Hello ", this.props.fname, " ", this.props.lname);
 		}
 	});
 
