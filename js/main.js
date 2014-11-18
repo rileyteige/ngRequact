@@ -10,14 +10,15 @@ require.config({
 	},
 
 	shim: {
+		ngReact: ['react'],
+
 		angular: {
-			depends: ['react', 'ngReact'],
 			exports: 'angular'
 		},
 		react: {
-			depends: ['ngReact'],
 			exports: 'React'
 		},
+		
 		underscore: {
 			exports: '_'
 		},

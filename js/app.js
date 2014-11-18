@@ -1,27 +1,26 @@
-/** @jsx React.DOM */
-define(['angular', 'react', 'ngReact'], function (angular, React) {
-	var app = angular.module('app', ['react']);
+define(['angular', 'components/helloComponent', 'ngReact'], function (angular, helloComponent) {
+	var registerComponent = function (app, componentRec) {
+		app.value(componentRec.name, componentRec.component)
+	}
+
+	var bootstrapAngular = function(appName) {
+	    angular.element(document).ready(function() {
+	      	angular.bootstrap(document, ['app']);
+	    });
+	}
+
+	var appName = 'app';
+
+
+
+	var app = angular.module(appName, ['react']);
 
 	app.controller('helloController', [ '$scope', function ($scope) {
-			$scope.person = { fname: 'Clark', lname: 'Kent' };
-		}]);
+		$scope.person = { fname: 'Clark', lname: 'Kent' };
+	}]);
 
-	var HelloComponent = React.createClass({
-		propTypes: {
-			fname: React.PropTypes.string.isRequired,
-			lname: React.PropTypes.string.isRequired
-		},
-		render: function () {
-			return <span>Hello {this.props.fname} {this.props.lname}</span>;
-		}
-	});
+	registerComponent(app, helloComponent);
 
-	app.value('HelloComponent', HelloComponent);
-
-    angular.element(document).ready(function() {
-   		console.log('A');
-      	angular.bootstrap(document, ['app']);
-      	console.log('B');
-    });
+	bootstrapAngular(appName);
 
 });
