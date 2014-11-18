@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
-(function () {
-
+define(['angular', 'react', 'ngReact'], function (angular, React) {
 	var app = angular.module('app', ['react']);
 
 	app.controller('helloController', [ '$scope', function ($scope) {
@@ -19,4 +18,10 @@
 
 	app.value('HelloComponent', HelloComponent);
 
-})();
+    angular.element(document).ready(function() {
+   		console.log('A');
+      	angular.bootstrap(document, ['app']);
+      	console.log('B');
+    });
+
+});
